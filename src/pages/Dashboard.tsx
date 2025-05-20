@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   PlusCircle, 
   Bell, 
@@ -18,6 +17,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
+import { useUserRole } from '@/contexts/UserRoleContext';
 
 // Mock data
 const myProjects = [
@@ -125,8 +125,28 @@ const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [acceptedInvitations, setAcceptedInvitations] = useState<string[]>([]);
   const [declinedInvitations, setDeclinedInvitations] = useState<string[]>([]);
+  const [userName, setUserName] = useState('User');
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { userRole } = useUserRole();
+  
+  useEffect(() => {
+    // Get user information from localStorage
+    const storedFirstName = localStorage.getItem('firstName');
+    const storedLastName = localStorage.getItem('lastName');
+    
+    if (storedFirstName && storedLastName) {
+      setUserName(`${storedFirstName} ${storedLastName}`);
+    } else if (storedFirstName) {
+      setUserName(storedFirstName);
+    } else if (localStorage.getItem('email')) {
+      // If no name found but email exists, use the part before the @ symbol
+      const email = localStorage.getItem('email') || '';
+      const nameFromEmail = email.split('@')[0];
+      // Capitalize first letter
+      setUserName(nameFromEmail.charAt(0).toUpperCase() + nameFromEmail.slice(1));
+    }
+  }, []);
   
   // Handle invitation actions
   const handleAcceptInvitation = (id: string, projectName: string) => {
@@ -151,12 +171,12 @@ const Dashboard = () => {
   );
   
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Navbar isLoggedIn={true} />
       
       <div className="flex">
         {/* Sidebar */}
-        <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+        <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} userName={userName} />
         
         {/* Main Content */}
         <main className="flex-1 p-6">
@@ -165,18 +185,18 @@ const Dashboard = () => {
             <div className="flex md:hidden items-center justify-between mb-6">
               <button 
                 onClick={() => setIsSidebarOpen(true)}
-                className="p-2 rounded-md hover:bg-gray-100"
+                className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 <Menu size={24} />
               </button>
               
               <div className="flex items-center gap-2">
-                <button className="p-2 rounded-full hover:bg-gray-100 relative">
+                <button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 relative">
                   <Bell size={20} />
                   <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
                 </button>
                 
-                <div className="w-8 h-8 bg-gray-200 rounded-full overflow-hidden">
+                <div className="w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                   <img 
                     src="https://i.pravatar.cc/300?img=12" 
                     alt="Profile" 
@@ -187,16 +207,16 @@ const Dashboard = () => {
             </div>
           
             <div className="mb-8">
-              <h1 className="text-2xl font-bold mb-2">Welcome back, Alex!</h1>
-              <p className="text-gray-600">Here's what's happening with your projects today.</p>
+              <h1 className="text-2xl font-bold mb-2 dark:text-white">Welcome back, {userName}!</h1>
+              <p className="text-gray-600 dark:text-gray-400">Here's what's happening with your projects today.</p>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
               {/* Profile Card */}
-              <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 shadow-sm">
                 <div className="flex items-start justify-between mb-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 bg-gray-200 rounded-full overflow-hidden">
+                    <div className="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                       <img 
                         src="https://i.pravatar.cc/300?img=12" 
                         alt="Profile" 
@@ -204,8 +224,8 @@ const Dashboard = () => {
                       />
                     </div>
                     <div>
-                      <h2 className="font-bold text-lg">Alex Johnson</h2>
-                      <p className="text-gray-500 text-sm">Computer Science • Berkeley</p>
+                      <h2 className="font-bold text-lg dark:text-white">{userName}</h2>
+                      <p className="text-gray-500 dark:text-gray-400 text-sm">Computer Science • Berkeley</p>
                     </div>
                   </div>
                   <Button variant="outline" size="sm">
@@ -214,7 +234,7 @@ const Dashboard = () => {
                 </div>
                 
                 <div className="mb-4">
-                  <h3 className="text-sm font-semibold mb-2">Skills</h3>
+                  <h3 className="text-sm font-semibold mb-2 dark:text-gray-300">Skills</h3>
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="secondary">React</Badge>
                     <Badge variant="secondary">UX Design</Badge>
@@ -225,26 +245,26 @@ const Dashboard = () => {
                 </div>
                 
                 <div>
-                  <h3 className="text-sm font-semibold mb-2">Stats</h3>
+                  <h3 className="text-sm font-semibold mb-2 dark:text-gray-300">Stats</h3>
                   <div className="grid grid-cols-3 gap-2 text-center">
-                    <div className="p-2 bg-gray-50 rounded-md">
+                    <div className="p-2 bg-gray-50 dark:bg-gray-900 rounded-md">
                       <p className="font-semibold text-primary">7</p>
-                      <p className="text-xs text-gray-500">Projects</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Projects</p>
                     </div>
-                    <div className="p-2 bg-gray-50 rounded-md">
+                    <div className="p-2 bg-gray-50 dark:bg-gray-900 rounded-md">
                       <p className="font-semibold text-primary">12</p>
-                      <p className="text-xs text-gray-500">Tasks</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Tasks</p>
                     </div>
-                    <div className="p-2 bg-gray-50 rounded-md">
+                    <div className="p-2 bg-gray-50 dark:bg-gray-900 rounded-md">
                       <p className="font-semibold text-primary">5</p>
-                      <p className="text-xs text-gray-500">Teams</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Teams</p>
                     </div>
                   </div>
                 </div>
               </div>
               
               {/* Current Projects (Col span 2 on large screens) */}
-              <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+              <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-xl font-bold">My Projects</h2>
                   <Button onClick={() => navigate('/create-project')}>
@@ -270,7 +290,7 @@ const Dashboard = () => {
             
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Tasks Section */}
-              <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+              <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-xl font-bold">My Tasks</h2>
                   <Button variant="outline" size="sm">
@@ -295,7 +315,7 @@ const Dashboard = () => {
               {/* Notifications and Invitations */}
               <div className="space-y-6">
                 {/* Notifications */}
-                <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+                <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
                   <h2 className="text-xl font-bold mb-4">Notifications</h2>
                   
                   <div className="space-y-3">
@@ -327,7 +347,7 @@ const Dashboard = () => {
                 </div>
                 
                 {/* Invitations */}
-                <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+                <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
                   <h2 className="text-xl font-bold mb-4">Invitations</h2>
                   
                   {pendingInvitations.length === 0 ? (

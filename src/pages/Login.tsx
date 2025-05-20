@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LogIn, Mail, Lock, User, Briefcase } from 'lucide-react';
@@ -15,6 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { setUserRole } = useUserRole();
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,6 +31,22 @@ const Login = () => {
     
     // Set user role
     setUserRole(role);
+    
+    // Save user info to localStorage (demo only)
+    localStorage.setItem('email', email);
+    
+    // Extract a name from the email (first part before @)
+    const namePart = email.split('@')[0];
+    // Format the name - capitalize first letter, replace dots with spaces
+    const formattedName = namePart
+      .split('.')
+      .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' ');
+    
+    localStorage.setItem('firstName', formattedName.split(' ')[0] || 'User');
+    if (formattedName.split(' ').length > 1) {
+      localStorage.setItem('lastName', formattedName.split(' ').slice(1).join(' '));
+    }
     
     toast({
       title: "Login successful",
@@ -88,7 +104,15 @@ const Login = () => {
                 </div>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                  <Input id="password" type="password" placeholder="••••••••" className="pl-10" required />
+                  <Input 
+                    id="password" 
+                    type="password" 
+                    placeholder="••••••••" 
+                    className="pl-10" 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required 
+                  />
                 </div>
               </div>
               

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, 
@@ -16,11 +16,18 @@ import { cn } from '@/lib/utils';
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  userName?: string;
 }
 
-const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
+const Sidebar = ({ isOpen, onClose, userName = "User" }: SidebarProps) => {
   const location = useLocation();
   const currentPath = location.pathname;
+  const [displayName, setDisplayName] = useState(userName);
+
+  useEffect(() => {
+    // Update displayName when userName prop changes
+    setDisplayName(userName);
+  }, [userName]);
 
   const links = [
     { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
@@ -61,7 +68,7 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
                 />
               </div>
               <div>
-                <h4 className="font-semibold text-sm text-gray-900 dark:text-gray-100">Alex Johnson</h4>
+                <h4 className="font-semibold text-sm text-gray-900 dark:text-gray-100">{displayName}</h4>
                 <p className="text-xs text-gray-500 dark:text-gray-400">Berkeley University</p>
               </div>
             </div>

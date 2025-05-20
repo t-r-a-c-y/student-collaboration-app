@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserPlus, Mail, Lock, User, School, GraduationCap, Briefcase, CheckCircle } from 'lucide-react';
@@ -15,6 +14,9 @@ const Signup = () => {
   const navigate = useNavigate();
   const { setUserRole } = useUserRole();
   const [selectedRole, setSelectedRole] = useState<'student' | 'collaborator' | null>(null);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,6 +32,11 @@ const Signup = () => {
     
     // Set the user role in context
     setUserRole(selectedRole);
+    
+    // Save user information to localStorage
+    localStorage.setItem('firstName', firstName);
+    localStorage.setItem('lastName', lastName);
+    localStorage.setItem('email', email);
     
     // Demo signup functionality
     toast({
@@ -94,13 +101,26 @@ const Signup = () => {
                   <Label htmlFor="firstName">First Name</Label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                    <Input id="firstName" placeholder="John" className="pl-10" required />
+                    <Input 
+                      id="firstName" 
+                      placeholder="John" 
+                      className="pl-10" 
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      required 
+                    />
                   </div>
                 </div>
                 
                 <div className="space-y-2">
                   <Label htmlFor="lastName">Last Name</Label>
-                  <Input id="lastName" placeholder="Doe" required />
+                  <Input 
+                    id="lastName" 
+                    placeholder="Doe" 
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    required 
+                  />
                 </div>
               </div>
               
@@ -108,7 +128,15 @@ const Signup = () => {
                 <Label htmlFor="email">Email</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                  <Input id="email" type="email" placeholder="name@example.com" className="pl-10" required />
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    placeholder="name@example.com" 
+                    className="pl-10"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required 
+                  />
                 </div>
               </div>
               
