@@ -69,7 +69,7 @@ const Sidebar = ({ isOpen, onClose, userName = "User" }: SidebarProps) => {
               </div>
               <div>
                 <h4 className="font-semibold text-sm text-gray-900 dark:text-gray-100">{displayName}</h4>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Berkeley University</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Gashora Girls</p>
               </div>
             </div>
             <Link 
