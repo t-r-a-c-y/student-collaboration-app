@@ -45,7 +45,7 @@ const usersData = [
     id: "3",
     name: "Emma Wilson",
     avatar: "https://i.pravatar.cc/300?img=5",
-    school: "",
+    school: "The University of Rwanda (UR)",
     major: "Computer Engineering",
     location: "Cambridge, MA",
     skills: ["IoT", "Embedded Systems", "C++"],
@@ -69,7 +69,7 @@ const usersData = [
     id: "5",
     name: "Mia Chen",
     avatar: "https://i.pravatar.cc/300?img=10",
-    school: "Harvard University",
+    school: "Mount kigali",
     major: "Computer Science & Business",
     location: "Boston, MA",
     skills: ["Project Management", "Full-stack", "Entrepreneurship"],
@@ -94,7 +94,7 @@ const usersData = [
 const schoolsData = [
   {
     id: "1",
-    name: "UC Berkeley",
+    name: "African Leadership University",
     students: 213,
     projects: 57,
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Seal_of_University_of_California%2C_Berkeley.svg/1200px-Seal_of_University_of_California%2C_Berkeley.svg.png",
@@ -102,7 +102,7 @@ const schoolsData = [
   },
   {
     id: "2",
-    name: "Stanford University",
+    name: "Mount Kigali",
     students: 185,
     projects: 64,
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Stanford_Cardinal_logo.svg/1200px-Stanford_Cardinal_logo.svg.png",
@@ -110,7 +110,7 @@ const schoolsData = [
   },
   {
     id: "3",
-    name: "MIT",
+    name: "Adventist University of Central Africa ",
     students: 142,
     projects: 78,
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/1200px-MIT_logo.svg.png",
@@ -118,7 +118,7 @@ const schoolsData = [
   },
   {
     id: "4",
-    name: "Harvard University",
+    name: "The University of Rwanda (UR)",
     students: 128,
     projects: 41,
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Harvard_Crimson_logo.svg/1200px-Harvard_Crimson_logo.svg.png",
