@@ -15,9 +15,9 @@ const usersData = [
     id: "1",
     name: "Sarah Miller",
     avatar: "https://i.pravatar.cc/300?img=1",
-    school: "Stanford University",
+    school: "University of Kigali",
     major: "Computer Science",
-    location: "Palo Alto, CA",
+    location: "Kigali , Rwanda",
     skills: ["React", "UX Design", "Python"],
     mutuals: 3,
     projects: 5,
@@ -30,17 +30,17 @@ const usersData = [
       { id: "p2", name: "Campus Navigation App", role: "UX Designer" },
     ],
     education: [
-      { school: "Stanford University", degree: "BS Computer Science", year: "2022 - Present" },
-      { school: "Lincoln High School", degree: "High School Diploma", year: "2018 - 2022" }
+      { school: "University of Kigali", degree: "BS Computer Science", year: "2022 - Present" },
+      { school: "Gashora Girls", degree: "High School Diploma", year: "2018 - 2022" }
     ]
   },
   {
     id: "2",
     name: "David Kim",
     avatar: "https://i.pravatar.cc/300?img=3",
-    school: "UC Berkeley",
+    school: "Adventist University of Central Africa ",
     major: "Data Science",
-    location: "Berkeley, CA",
+    location: "Kigali, Rwanda",
     skills: ["Data Analysis", "Machine Learning", "Visualization"],
     mutuals: 2,
     projects: 4,
@@ -53,8 +53,8 @@ const usersData = [
       { id: "p4", name: "Predictive Learning Model", role: "ML Engineer" },
     ],
     education: [
-      { school: "UC Berkeley", degree: "BS Data Science", year: "2021 - Present" },
-      { school: "Oakland Technical High School", degree: "High School Diploma", year: "2017 - 2021" }
+      { school: "Adventist University of Central Africa ", degree: "BS Data Science", year: "2021 - Present" },
+      { school: "Rwanda Coding Academi", degree: "High School Diploma", year: "2017 - 2021" }
     ]
   }
 ];
@@ -62,13 +62,13 @@ const usersData = [
 const schoolsData = [
   {
     id: "1",
-    name: "UC Berkeley",
+    name: "Adventist University of Central Africa ",
     students: 213,
     projects: 57,
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Seal_of_University_of_California%2C_Berkeley.svg/1200px-Seal_of_University_of_California%2C_Berkeley.svg.png",
     description: "A public research university in Berkeley, California known for its academic excellence in computer science and engineering.",
-    location: "Berkeley, California",
-    website: "berkeley.edu",
+    location: "Kigali Rwanda",
+    website: "https://auca.ac.rw/",
     foundedYear: 1868,
     programs: ["Computer Science", "Engineering", "Business", "Law", "Data Science"],
     notableFaculty: ["John Doe", "Jane Smith", "Robert Johnson"],
@@ -76,13 +76,13 @@ const schoolsData = [
   },
   {
     id: "2",
-    name: "Stanford University",
+    name: "African Leadership University",
     students: 185,
     projects: 64,
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Stanford_Cardinal_logo.svg/1200px-Stanford_Cardinal_logo.svg.png",
     description: "A private research university in Stanford, California with strong programs in computer science, engineering, and entrepreneurship.",
-    location: "Stanford, California",
-    website: "stanford.edu",
+    location: "Masoro, Kigali",
+    website: "https://www.alueducation.com/",
     foundedYear: 1885,
     programs: ["Computer Science", "Engineering", "Business", "Medicine", "Law"],
     notableFaculty: ["John Smith", "Mary Johnson", "Robert Williams"],

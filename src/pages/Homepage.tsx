@@ -218,7 +218,7 @@ const Homepage = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold">Jessica K.</h4>
-                  <p className="text-sm text-gray-500">Stanford University</p>
+                  <p className="text-sm text-gray-500">Adventist University of Central Africa </p>
                 </div>
               </div>
               <p className="text-gray-600">

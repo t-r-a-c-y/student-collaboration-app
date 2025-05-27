@@ -19,9 +19,9 @@ const Profile = () => {
     firstName: 'Alex',
     lastName: 'Johnson',
     email: 'alex.johnson@example.com',
-    school: 'Berkeley University',
+    school: 'Adventist University of Central Africa ',
     major: 'Computer Science',
-    location: 'San Francisco, CA',
+    location: 'Kigali, Rwanda',
     bio: 'Computer Science student interested in web development, AI, and collaborative projects.',
     website: 'alexjohnson.dev',
     skills: ['React', 'UX Design', 'API Integration', 'Python', 'Node.js', 'Data Analysis']

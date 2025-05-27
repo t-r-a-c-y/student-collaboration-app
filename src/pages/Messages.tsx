@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Search, Edit, PlusCircle, Send, Phone, Video, MoreVertical, Paperclip, Image } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -149,7 +148,7 @@ const Messages = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar isLoggedIn={true} />
       
       <div className="flex">
@@ -158,8 +157,8 @@ const Messages = () => {
         <main className="flex-1 flex flex-col">
           <div className="flex h-[calc(100vh-4rem)]">
             {/* Conversation List */}
-            <div className="w-80 border-r border-gray-200 bg-white hidden md:flex md:flex-col">
-              <div className="p-4 border-b">
+            <div className="w-80 border-r border-border bg-card hidden md:flex md:flex-col">
+              <div className="p-4 border-b border-border">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-xl font-bold">Messages</h2>
                   <Button variant="ghost" size="icon">
@@ -168,7 +167,7 @@ const Messages = () => {
                 </div>
                 
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
                   <Input placeholder="Search messages" className="pl-9" />
                 </div>
               </div>
@@ -178,35 +177,35 @@ const Messages = () => {
                   <button
                     key={conversation.id}
                     onClick={() => setActiveConversation(conversation)}
-                    className={`w-full p-3 flex items-start gap-3 hover:bg-gray-50 border-b border-gray-100 ${
-                      activeConversation.id === conversation.id ? 'bg-gray-50' : ''
+                    className={`w-full p-3 flex items-start gap-3 hover:bg-accent/10 border-b border-border ${
+                      activeConversation.id === conversation.id ? 'bg-accent/10' : ''
                     }`}
                   >
                     <div className="relative">
                       {conversation.avatar ? (
-                        <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
+                        <div className="w-10 h-10 rounded-full bg-muted overflow-hidden">
                           <img 
                             src={conversation.avatar} 
                             alt={conversation.name} 
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover dark:opacity-90"
                           />
                         </div>
                       ) : (
-                        <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-medium">
+                        <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-medium">
                           {conversation.name.charAt(0)}
                         </div>
                       )}
                       {conversation.online && (
-                        <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-white"></div>
+                        <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-card"></div>
                       )}
                     </div>
                     
                     <div className="flex-1 min-w-0 text-left">
                       <div className="flex justify-between items-baseline">
                         <span className="font-medium truncate">{conversation.name}</span>
-                        <span className="text-xs text-gray-500">{conversation.timestamp}</span>
+                        <span className="text-xs text-muted-foreground">{conversation.timestamp}</span>
                       </div>
-                      <p className="text-sm text-gray-500 truncate">{conversation.lastMessage}</p>
+                      <p className="text-sm text-muted-foreground truncate">{conversation.lastMessage}</p>
                     </div>
                     
                     {conversation.unread > 0 && (
@@ -218,7 +217,7 @@ const Messages = () => {
                 ))}
               </div>
               
-              <div className="p-3 border-t border-gray-200">
+              <div className="p-3 border-t border-border">
                 <Button className="w-full" size="sm">
                   <PlusCircle size={16} className="mr-2" /> New Message
                 </Button>
@@ -228,25 +227,25 @@ const Messages = () => {
             {/* Chat Window */}
             <div className="flex-1 flex flex-col">
               {/* Chat Header */}
-              <div className="bg-white p-4 border-b border-gray-200 flex items-center justify-between">
+              <div className="bg-card p-4 border-b border-border flex items-center justify-between">
                 <div className="flex items-center">
                   {activeConversation.avatar ? (
-                    <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden mr-3">
+                    <div className="w-10 h-10 rounded-full bg-muted overflow-hidden mr-3">
                       <img 
                         src={activeConversation.avatar} 
                         alt={activeConversation.name} 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover dark:opacity-90"
                       />
                     </div>
                   ) : (
-                    <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-medium mr-3">
+                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-medium mr-3">
                       {activeConversation.name.charAt(0)}
                     </div>
                   )}
                   
                   <div>
                     <h3 className="font-medium">{activeConversation.name}</h3>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-muted-foreground">
                       {activeConversation.online ? "Online" : "Offline"}
                     </p>
                   </div>
@@ -266,7 +265,7 @@ const Messages = () => {
               </div>
               
               {/* Chat Messages - Make this section scrollable */}
-              <div className="flex-1 overflow-y-auto bg-gray-50 p-4">
+              <div className="flex-1 overflow-y-auto bg-background p-4">
                 <div className="space-y-4">
                   {messages.map(msg => (
                     <ChatMessage key={msg.id} {...msg} />
@@ -276,7 +275,7 @@ const Messages = () => {
               </div>
               
               {/* Message Input */}
-              <div className="bg-white p-4 border-t border-gray-200">
+              <div className="bg-card p-4 border-t border-border">
                 <div className="flex items-end gap-2">
                   <div className="flex-1">
                     <Textarea
