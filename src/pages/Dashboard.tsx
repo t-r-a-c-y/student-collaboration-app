@@ -225,7 +225,7 @@ const Dashboard = () => {
                     </div>
                     <div>
                       <h2 className="font-bold text-lg dark:text-white">{userName}</h2>
-                      <p className="text-gray-500 dark:text-gray-400 text-sm">Computer Science • Berkeley</p>
+                      <p className="text-gray-500 dark:text-gray-400 text-sm">Computer Science • Rwanda Coding Academy</p>
                     </div>
                   </div>
                   <Button variant="outline" size="sm">

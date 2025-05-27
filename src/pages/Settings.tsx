@@ -73,7 +73,7 @@ const Settings = () => {
                             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
                             <Input 
                               id="email" 
-                              defaultValue="alex.johnson@example.com" 
+                              defaultValue="john.doe@example.com" 
                               className="pl-10"
                             />
                           </div>
